@@ -1,20 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import NavigationBar from './components/NavigationBar'
+import { useState } from 'react';
+import './App.css';
+import NavigationBar from './components/NavigationBar';
+import Table from './components/Table';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeCollectionName, setActiveCollectionName] = useState('amazon.aws');
+
+  const handleCollectionChange = (collectionName) => {
+    setActiveCollectionName(collectionName);
+  };
 
   return (
     <>
-      <div>
-       {/* Navigation bar */}
-       < NavigationBar />
-       {/* Main component */}
-       <main></main>
+      <div className='w-full flex'>
+        < NavigationBar setActiveCollection={handleCollectionChange} />
+        <main className="grow">
+          <Table activeCollection={activeCollectionName} />
+        </main>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
